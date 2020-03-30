@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title>{{title}}</title>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <h1>Поиск быстрой работы</h1>
+    <a href="/" class="btn btn-secondary">На главную</a>
+    {% if current_user.is_authenticated %}
+    <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+    <p>
+        {% if current_user.is_authenticated and current_user.employment == 'Работодатель' %}
+        <a href="/myjobs" class="btn btn-secondary" style="margin-top: 20px">Мои заказы</a>
+        {% endif %}
+    </p>
+    {% else %}
+    <p>
+        <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+        <a class="btn btn-success" href="/login">Войти</a>
+    </p>
+    {% endif %}
+</nav>
+
+
+<main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

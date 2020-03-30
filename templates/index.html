@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 align="center">Все предложения работы</h2>
+<form action="" method="POST">
+    <p>
+        {{ form.my_address.label }}<br>
+        {{ form.my_address(class="form-control") }}<br>
+        {% for error in form.my_address.errors %}
+    <p content="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+
+    <p>{{ form.submit_address(type="submit", class="btn btn-primary") }}</p>
+
+        <p>
+        {{ form.sorting.label }}<br>
+        {{ form.sorting(class="form-control") }}<br>
+        {% for error in form.sorting.errors %}
+    <p content="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+    <p>{{ form.submit_sort(type="submit", class="btn btn-primary") }}</p>
+
+    {{message}}
+</form>
+
+<img src="/{{ image }}">
+{% for item in jobs%}
+{% if item.is_finished == False %}
+<h4>Работа № {{ item.id }}</h4>
+<table class="table table-striped">
+    <thead>
+    <tr class="table-active">
+        <th scope="col">Title of activity</th>
+        <th scope="col">Team leader</th>
+        <th scope="col">Duration</th>
+        <th scope="col">List of collaborators</th>
+        <th scope="col">Is finished</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ item.description }}</td>
+        <td>{{ item.employer }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.salary }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.info }}</td>
+        <td>{{ item.is_finished }}</td>
+    </tr>
+    </tbody>
+</table>
+
+{% if current_user.is_authenticated and current_user.id == item.employer %}
+<div>
+    <a href="/addjob/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Edit job</a>
+    <a href="/job_delete/{{ item.id }}" class="btn btn-danger" style="margin-bottom: 30px">Delete job</a>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+
+{% endblock %}

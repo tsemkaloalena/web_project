@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if current_user.is_authenticated and current_user.employment == 'Работодатель' %}
+<a href="addjob" class="btn btn-secondary" style="margin-top: 20px">Добавить работу</a>
+
+<h2 align="center">Заказанные услуги</h2>
+
+{% for item in jobs%}
+<h4>Работа № {{ item.id }}</h4>
+<table class="table table-striped">
+    <thead>
+    <tr class="table-active">
+        <th scope="col">Title of activity</th>
+        <th scope="col">Team leader</th>
+        <th scope="col">Duration</th>
+        <th scope="col">List of collaborators</th>
+        <th scope="col">Is finished</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ item.description }}</td>
+        <td>{{ item.employer }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.salary }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.info }}</td>
+        <td>{{ item.is_finished }}</td>
+    </tr>
+
+    </tbody>
+</table>
+<div>
+    <a href="/addjob/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Edit job</a>
+    <a href="/job_delete/{{ item.id }}" class="btn btn-danger" style="margin-bottom: 30px">Delete job</a>
+</div>
+{% endfor %}
+
+
+<h2 align="center">Предоставленные мне услуги</h2>
+{% if jobs_done == [] %}
+<h4>Пока что таких работ нет</h4>
+{% endif %}
+{% for item in jobs_done %}
+<h4>Работа № {{ item.id }}</h4>
+<table class="table table-striped">
+    <thead>
+    <tr class="table-active">
+        <th scope="col">Title of activity</th>
+        <th scope="col">Team leader</th>
+        <th scope="col">Duration</th>
+        <th scope="col">List of collaborators</th>
+        <th scope="col">Is finished</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ item.description }}</td>
+        <td>{{ item.employer }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.salary }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.info }}</td>
+        <td>{{ item.is_finished }}</td>
+    </tr>
+
+    </tbody>
+</table>
+{% endfor %}
+
+{% endif %}
+
+
+{% endblock %}

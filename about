@@ -1,0 +1,48 @@
+Пользователь:
+email
+пароль
+ФИО
+работодатель/рабочий
+миниописание
+оценки
+
+surname
+name
+employment
+email
+hashed_password
+info
+
+
+
+Работа:
+В чём заключается
+Адрес
+Инфа о работодателе (ФИО, email)
+Цена
+Время начала
+Комментарий
+Координаты
+
+description
+employer
+address
+salary
+date
+info
+
+
+
+Выбор на карте
+
+
+_____________________________
+| email: emaildgdf@email.ru |
+| password: fjfj            |
+|___________________________|
+| email: newuser@email.ru   |
+| password: 11111           |
+|___________________________|
+| email: vanya@gmail.com    |
+| password: aaaaa           |
+|___________________________|
