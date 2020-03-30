@@ -6,6 +6,7 @@ from flask_restful import abort
 from werkzeug.utils import redirect
 
 from data import db_session
+from data.users import User
 from data.jobs import Jobs, JobsForm, AddressJob
 from data.show_map import show, sort_address_jobs, sort_salary_jobs, sort_date_jobs
 
@@ -33,7 +34,8 @@ def index():
                 jobs = sort_date_jobs('down')
     if jobs is None:
         jobs = session.query(Jobs).all()
-    return render_template("index.html", jobs=jobs, image=image, form=form)
+    users = session.query(User).all()
+    return render_template("index.html", jobs=jobs, users=users, image=image, form=form)
 
 
 @blueprint.route("/myjobs")

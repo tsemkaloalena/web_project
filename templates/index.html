@@ -34,14 +34,18 @@
 {% for item in jobs%}
 {% if item.is_finished == False %}
 <h4>Работа № {{ item.id }}</h4>
+
+
 <table class="table table-striped">
     <thead>
     <tr class="table-active">
-        <th scope="col">Title of activity</th>
-        <th scope="col">Team leader</th>
-        <th scope="col">Duration</th>
-        <th scope="col">List of collaborators</th>
-        <th scope="col">Is finished</th>
+        <th scope="col">Краткое описание работы</th>
+        <th scope="col">id нанимателя</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Оплата за услугу (в рублях)</th>
+        <th scope="col">Дата и время, когда нужно прийти</th>
+        <th scope="col">Доп. информация</th>
+
     </tr>
     </thead>
     <tbody>
@@ -52,7 +56,6 @@
         <td>{{ item.salary }}</td>
         <td>{{ item.date }}</td>
         <td>{{ item.info }}</td>
-        <td>{{ item.is_finished }}</td>
     </tr>
     </tbody>
 </table>

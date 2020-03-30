@@ -30,7 +30,7 @@ class JobsForm(FlaskForm):
     salary = IntegerField("Оплата за услугу (в рублях)", validators=[DataRequired()])
     address = TextAreaField("Адрес", validators=[DataRequired()])
     info = TextAreaField("Доп. информация")
-    coords = TextAreaField("Доп. информация")
+    coords = TextAreaField("Координаты")
     date = TextAreaField("Дата и время, когда нужно прийти", validators=[DataRequired()])
     is_finished = BooleanField("Выполнена ли работа?")
     submit = SubmitField('Готово')
