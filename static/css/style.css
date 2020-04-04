@@ -171,3 +171,86 @@ ul li {
     margin: 12px 0 12px 0;
     font-size: 17px;
 }
+
+
+.login-button {
+    background-color: #753840;
+    border: none;
+    color: #f5e6e1;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+.login-title {
+    margin: 20px 0 10px 0;
+    color: #242225;
+}
+.login-form {
+    width: 400px;
+    border: none;
+    border-radius: 6px;
+    height: 45px;
+    padding: 5px 5px 5px 10px;
+}
+.register-button {
+    background-color: #753840;
+    border: none;
+    color: #f5e6e1;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+.register-title {
+    margin: 20px 0 10px 0;
+    color: #242225;
+}
+.register-form {
+    width: 400px;
+    border: none;
+    border-radius: 6px;
+    height: 45px;
+    padding: 5px 5px 5px 10px;
+    background-color: #b7ccad;
+}
+.about-job-btn a {
+    background-color: #753840;
+    border: none;
+    color: #f5e6e1;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+}
+.about-job-btn a:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #97a98f;
+}
+.edit-job-btn a {
+    background-color: #753840;
+    border: none;
+    color: #f5e6e1;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+
+}
+.edit-job-btn a:hover {
+    text-decoration: none;
+    color: #242225;
+    background-color: #cfd0d4;
+}
+.delete-job-btn a {
+    position: relative;
+    left: 150px;
+    top: -24px;
+    background-color: #b02538;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+}
+.delete-job-btn a:hover {
+    text-decoration: none;
+    color: #242225;
+    background-color: #e1b0a9;
+}

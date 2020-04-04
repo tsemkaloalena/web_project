@@ -46,15 +46,14 @@
 </ul>
 
 {% if current_user.is_authenticated and current_user.id == item.employer %}
-<div>
-    <a href="/addjob/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Редактировать</a>
-    <a href="/job_delete/{{ item.id }}" class="btn btn-danger" style="margin-bottom: 30px">Удалить</a>
-</div>
+<div class="edit-job-btn"><a href="/addjob/{{ item.id }}">Редактировать</a></div>
+<div class="delete-job-btn"><a href="/job_delete/{{ item.id }}">Удалить</a></div>
+
 {% endif %}
 
 {% if current_user.is_authenticated and current_user.employment == 'Рабочий' %}
-<div>
-    <a href="/about_job/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Подробнее</a>
+<div class="about-job-btn">
+    <a href="/about_job/{{ item.id }}">Подробнее</a>
 </div>
 {% endif %}
 </div>
