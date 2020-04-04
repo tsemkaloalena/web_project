@@ -7,7 +7,7 @@ from werkzeug.utils import redirect
 
 from data import db_session
 from data.users import User
-from data.jobs import Jobs, JobsForm, AddressJob
+from data.jobs import Jobs, JobsForm, AddressJob, Ready
 from data.show_map import show, sort_address_jobs, sort_salary_jobs, sort_date_jobs
 
 blueprint = flask.Blueprint('jobs_api', __name__, template_folder='templates')
@@ -34,16 +34,19 @@ def index():
                 jobs = sort_date_jobs('down')
     if jobs is None:
         jobs = session.query(Jobs).all()
-    users = session.query(User).all()
-    return render_template("index.html", jobs=jobs, users=users, image=image, form=form)
+    return render_template("index.html", jobs=jobs, image=image, form=form)
 
 
 @blueprint.route("/myjobs")
 def myjobs():
     session = db_session.create_session()
     jobs = session.query(Jobs).filter(Jobs.employer == current_user.id, Jobs.is_finished == False).all()
+    sp = session.query(User).all()
+    users = {}
+    for user in sp:
+        users[user.id] = user
     jobs_done = session.query(Jobs).filter(Jobs.employer == current_user.id, Jobs.is_finished == True).all()
-    return render_template("my_jobs.html", jobs=jobs, jobs_done=jobs_done)
+    return render_template("my_jobs.html", jobs=jobs, users=users, jobs_done=jobs_done)
 
 
 @blueprint.route('/addjob', methods=['GET', 'POST'])
@@ -139,3 +142,25 @@ def job_delete(job_id):
     else:
         abort(404)
     return redirect('/myjobs')
+
+
+@blueprint.route('/about_job/<int:job_id>', methods=['GET', 'POST'])
+@login_required
+def about_job(job_id):
+    form = Ready()
+    session = db_session.create_session()
+    job = session.query(Jobs).filter(Jobs.id == job_id).first()
+    employer = session.query(User).filter(User.id == job.employer).first()
+    if request.method == "POST":
+        if form.submit_ready.data:
+            job.employee = current_user.id
+        if form.submit_refuse.data:
+            job.employee = 0
+    session.commit()
+    return render_template("about.html", job=job, employer=employer, form=form)
+
+
+@blueprint.route('/ready_to_work/<int:job_id>', methods=['GET', 'POST'])
+@login_required
+def ready_to_work(job_id):
+    return redirect('/')

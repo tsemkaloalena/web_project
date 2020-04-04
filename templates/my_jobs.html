@@ -11,30 +11,37 @@
 <table class="table table-striped">
     <thead>
     <tr class="table-active">
-        <th scope="col">Title of activity</th>
-        <th scope="col">Team leader</th>
-        <th scope="col">Duration</th>
-        <th scope="col">List of collaborators</th>
-        <th scope="col">Is finished</th>
+        <th scope="col">Краткое описание работы</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Оплата за услугу (в рублях)</th>
+        <th scope="col">Дата и время, когда нужно прийти</th>
+        <th scope="col">Доп. информация</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>{{ item.description }}</td>
-        <td>{{ item.employer }}</td>
         <td>{{ item.address }}</td>
         <td>{{ item.salary }}</td>
         <td>{{ item.date }}</td>
         <td>{{ item.info }}</td>
-        <td>{{ item.is_finished }}</td>
     </tr>
-
     </tbody>
 </table>
 <div>
-    <a href="/addjob/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Edit job</a>
-    <a href="/job_delete/{{ item.id }}" class="btn btn-danger" style="margin-bottom: 30px">Delete job</a>
+    <a href="/addjob/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Редактировать</a>
+    <a href="/job_delete/{{ item.id }}" class="btn btn-danger" style="margin-bottom: 30px">Удалить</a>
 </div>
+
+{% if item.employee != 0 %}
+<div>
+    <p>За работу взялся (взялась, взялось, взялись):</p>
+    <p>{{ users[item.employee].surname }} {{ users[item.employee].name}}</p>
+    {% if users[item.employee].info != '' %}
+    <p>Доп.информация: {{ users[item.employee].info }}</p>
+    {% endif %}
+</div>
+{% endif %}
 {% endfor %}
 
 
@@ -47,29 +54,35 @@
 <table class="table table-striped">
     <thead>
     <tr class="table-active">
-        <th scope="col">Title of activity</th>
-        <th scope="col">Team leader</th>
-        <th scope="col">Duration</th>
-        <th scope="col">List of collaborators</th>
-        <th scope="col">Is finished</th>
+        <th scope="col">Краткое описание работы</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Оплата за услугу (в рублях)</th>
+        <th scope="col">Дата и время, когда нужно прийти</th>
+        <th scope="col">Доп. информация</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>{{ item.description }}</td>
-        <td>{{ item.employer }}</td>
         <td>{{ item.address }}</td>
         <td>{{ item.salary }}</td>
         <td>{{ item.date }}</td>
         <td>{{ item.info }}</td>
-        <td>{{ item.is_finished }}</td>
     </tr>
-
     </tbody>
 </table>
-{% endfor %}
 
+{% if item.employee != 0 %}
+<div>
+    <p>Услугу предоставил (предоставила, предоставило, предоставили):</p>
+    <p>{{ users[item.employee].surname }} {{ users[item.employee].name}}</p>
+    {% if users[item.employee].info != '' %}
+    <p>Доп.информация: {{ users[item.employee].info }}</p>
+    {% endif %}
+</div>
 {% endif %}
 
+{% endfor %}
+{% endif %}
 
 {% endblock %}

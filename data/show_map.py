@@ -8,9 +8,9 @@ from data.jobs import Jobs
 def show():
     db_session.global_init("db/jobs.db")
     session = db_session.create_session()
-    points = session.query(Jobs.coords, Jobs.id).all()
-    ids = [el[1] for el in points]
-    points = [el[0] for el in points]
+    points = session.query(Jobs.coords, Jobs.id, Jobs.is_finished).all()
+    ids = [el[1] for el in points if el[2] == False]
+    points = [el[0] for el in points if el[2] == False]
     points = [f'{points[i].split()[0]},{points[i].split()[1]},pm2ywl{ids[i]}' for i in range(len(points))]
     map_request = f"http://static-maps.yandex.ru/1.x/?&l=map&pt={'~'.join(points)}"
     response = requests.get(map_request)

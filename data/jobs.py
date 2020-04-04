@@ -21,6 +21,7 @@ class Jobs(SqlAlchemyBase):
     date = sqlalchemy.Column(sqlalchemy.String)
     coords = sqlalchemy.Column(sqlalchemy.String)
     is_finished = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
+    employee = sqlalchemy.Column(sqlalchemy.Integer, default=0)
     user = orm.relation('User')
 
 
@@ -31,7 +32,7 @@ class JobsForm(FlaskForm):
     address = TextAreaField("Адрес", validators=[DataRequired()])
     info = TextAreaField("Доп. информация")
     coords = TextAreaField("Координаты")
-    date = TextAreaField("Дата и время, когда нужно прийти", validators=[DataRequired()])
+    date = TextAreaField("Когда нужно прийти (дата и время)", validators=[DataRequired()])
     is_finished = BooleanField("Выполнена ли работа?")
     submit = SubmitField('Готово')
 
@@ -45,3 +46,8 @@ class AddressJob(FlaskForm):
     my_address = StringField('Ваш адрес')
     submit_address = SubmitField('Найти ближайшие предложения')
     submit_sort = SubmitField('Сортировать')
+
+
+class Ready(FlaskForm):
+    submit_ready = SubmitField('Готов(а, о, ы) приступить к работе')
+    submit_refuse = SubmitField('Отказаться')
