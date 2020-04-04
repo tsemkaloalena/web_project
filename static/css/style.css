@@ -1,0 +1,96 @@
+.menu {
+    background: #f5e6e1;
+    height: 120px;
+}
+.home {
+    position: absolute;
+    left: 20px;
+    margin-top: 60px;
+    color: #242225;
+}
+.exit {
+    position: absolute;
+    left: 80px;
+    margin-top: 60px;
+    color: #242225;
+}
+.my_orders a {
+    position: absolute;
+    right: 10px;
+    margin-top: 35px;
+    background-color: #97a98f;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+}
+.my_orders a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #677362;
+}
+.username {
+    position: absolute;
+    font-size: 20px;
+    right: 10px;
+    color: #5f1e08;
+}
+.title {
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #753840;
+}
+.register a {
+    position: absolute;
+    margin-top: 35px;
+    right: 80px;
+    background-color: #e7caa8;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+}
+.register a:hover {
+    color: #fff;
+    background-color: #ccb295;
+    text-decoration: none;
+}
+.login a {
+    position: absolute;
+    right: 10px;
+    margin-top: 35px;
+    background-color: #cfd0d4;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+}
+.login a:hover {
+    color: #fff;
+    background-color: #969799;
+    text-decoration: none;
+}
+@media (max-width: 800px) {
+    .home {
+        margin-top: 80px;
+    }
+    .exit {
+        margin-top: 80px;
+    }
+    .username {
+        margin-top: 80px;
+    }
+    .my_orders {
+        left: 10px;
+        right: auto;
+        margin-top: -20px;
+    }
+    .menu {
+        height: 140px;
+    }
+    .register a {
+        margin-top: 55px;
+    }
+    .login a {
+        margin-top: 55px;
+    }
+
+}
