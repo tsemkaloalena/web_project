@@ -2,11 +2,12 @@
 
 {% block content %}
 
-<h2 align="center">Все предложения работы</h2>
+<h2 class="index-title">Все предложения работы</h2>
+
 <form action="" method="POST">
     <p>
         {{ form.my_address.label }}<br>
-        {{ form.my_address(class="form-control") }}<br>
+        {{ form.my_address(class="index-form") }}<br>
         {% for error in form.my_address.errors %}
     <p content="alert alert-danger" role="alert">
         {{ error }}
@@ -14,25 +15,27 @@
     {% endfor %}
     </p>
 
-    <p>{{ form.submit_address(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit_address(type="submit", class="index_button") }}</p>
 
-        <p>
+    <p>
         {{ form.sorting.label }}<br>
-        {{ form.sorting(class="form-control") }}<br>
+        {{ form.sorting(class="index-form") }}<br>
         {% for error in form.sorting.errors %}
     <p content="alert alert-danger" role="alert">
         {{ error }}
     </p>
     {% endfor %}
     </p>
-    <p>{{ form.submit_sort(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit_sort(type="submit", class="index_button") }}</p>
 
     {{message}}
 </form>
+<img class="map" src="/{{ image }}">
 
-<img src="/{{ image }}">
+
 {% for item in jobs%}
 {% if item.is_finished == False %}
+<div class="index-job">
 <h4>Работа № {{ item.id }}</h4>
 
 <ul>
@@ -54,7 +57,7 @@
     <a href="/about_job/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Подробнее</a>
 </div>
 {% endif %}
-
+</div>
 {% endif %}
 {% endfor %}
 
