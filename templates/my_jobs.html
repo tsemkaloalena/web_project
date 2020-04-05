@@ -2,23 +2,20 @@
 
 {% block content %}
 {% if current_user.is_authenticated and current_user.employment == 'Работодатель' %}
-<a href="addjob" class="btn btn-secondary" style="margin-top: 20px">Добавить работу</a>
+<div class="add-job-btn"><a href="addjob">Добавить работу</a></div>
 
 <h2 align="center">Заказанные услуги</h2>
 
 {% for item in jobs%}
 <h4>Работа № {{ item.id }}</h4>
-<table class="table table-striped">
-    <thead>
-    <tr class="table-active">
-        <th scope="col">Краткое описание работы</th>
-        <th scope="col">Адрес</th>
-        <th scope="col">Оплата за услугу (в рублях)</th>
-        <th scope="col">Дата и время, когда нужно прийти</th>
-        <th scope="col">Доп. информация</th>
+<table class="myjobs-table">
+    <tr>
+        <th>Краткое описание работы</th>
+        <th>Адрес</th>
+        <th>Оплата за услугу (в рублях)</th>
+        <th>Дата и время, когда нужно прийти</th>
+        <th>Доп. информация</th>
     </tr>
-    </thead>
-    <tbody>
     <tr>
         <td>{{ item.description }}</td>
         <td>{{ item.address }}</td>
@@ -26,17 +23,14 @@
         <td>{{ item.date }}</td>
         <td>{{ item.info }}</td>
     </tr>
-    </tbody>
 </table>
-<div>
-    <a href="/addjob/{{ item.id }}" class="btn btn-warning" style="margin-bottom: 30px">Редактировать</a>
-    <a href="/job_delete/{{ item.id }}" class="btn btn-danger" style="margin-bottom: 30px">Удалить</a>
-</div>
+<div class="edit-job-btn"><a href="/addjob/{{ item.id }}">Редактировать</a></div>
+<div class="delete-job-btn"><a href="/job_delete/{{ item.id }}">Удалить</a></div>
+
 
 {% if item.employee != 0 %}
 <div>
-    <p>За работу взялся (взялась, взялось, взялись):</p>
-    <p>{{ users[item.employee].surname }} {{ users[item.employee].name}}</p>
+    <p class="myjobs-employee">Услугу предоставит: {{ users[item.employee].surname }} {{ users[item.employee].name}}</p>
     {% if users[item.employee].info != '' %}
     <p>Доп.информация: {{ users[item.employee].info }}</p>
     {% endif %}
@@ -51,17 +45,14 @@
 {% endif %}
 {% for item in jobs_done %}
 <h4>Работа № {{ item.id }}</h4>
-<table class="table table-striped">
-    <thead>
-    <tr class="table-active">
-        <th scope="col">Краткое описание работы</th>
-        <th scope="col">Адрес</th>
-        <th scope="col">Оплата за услугу (в рублях)</th>
-        <th scope="col">Дата и время, когда нужно прийти</th>
-        <th scope="col">Доп. информация</th>
+<table class="myjobs-table">
+    <tr>
+        <th>Краткое описание работы</th>
+        <th>Адрес</th>
+        <th>Оплата за услугу (в рублях)</th>
+        <th>Дата и время, когда нужно прийти</th>
+        <th>Доп. информация</th>
     </tr>
-    </thead>
-    <tbody>
     <tr>
         <td>{{ item.description }}</td>
         <td>{{ item.address }}</td>
@@ -69,7 +60,6 @@
         <td>{{ item.date }}</td>
         <td>{{ item.info }}</td>
     </tr>
-    </tbody>
 </table>
 
 {% if item.employee != 0 %}

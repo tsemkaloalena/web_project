@@ -53,9 +53,10 @@ def myjobs():
 @login_required
 def add_job():
     form = JobsForm()
+    session = db_session.create_session()
+    jobs = Jobs()
     if form.validate_on_submit():
-        session = db_session.create_session()
-        jobs = Jobs()
+
         jobs.description = form.description.data
         jobs.employer = current_user
         jobs.address = form.address.data
@@ -158,9 +159,3 @@ def about_job(job_id):
             job.employee = 0
     session.commit()
     return render_template("about.html", job=job, employer=employer, form=form)
-
-
-@blueprint.route('/ready_to_work/<int:job_id>', methods=['GET', 'POST'])
-@login_required
-def ready_to_work(job_id):
-    return redirect('/')

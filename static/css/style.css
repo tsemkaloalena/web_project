@@ -113,12 +113,17 @@
     width: 400px;
     border: none;
     border-radius: 6px;
-    height: 40px;
+    min-height: 40px;
     padding: 6px;
     background-color: #f5e6e1;
 }
 form {
-    width: 400px;
+    width: 60%;
+}
+@media (max-width: 700px) {
+    form {
+        width: 100%
+    }
 }
 .index-job {
     width: 500px;
@@ -187,10 +192,10 @@ ul li {
     color: #242225;
 }
 .login-form {
-    width: 400px;
+    width: 90%;
     border: none;
     border-radius: 6px;
-    height: 45px;
+    min-height: 45px;
     padding: 5px 5px 5px 10px;
 }
 .register-button {
@@ -207,10 +212,10 @@ ul li {
     color: #242225;
 }
 .register-form {
-    width: 400px;
+    width: 100%;
     border: none;
     border-radius: 6px;
-    height: 45px;
+    min-height: 45px;
     padding: 5px 5px 5px 10px;
     background-color: #b7ccad;
 }
@@ -253,4 +258,112 @@ ul li {
     text-decoration: none;
     color: #242225;
     background-color: #e1b0a9;
+}
+
+
+.about-job-title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 26px;
+    color: #753840;
+}
+.about-job-number {
+    color: #152645;
+}
+.about-job-employer {
+    font-size: 20px;
+    color: #152645;
+}
+.ready-btn {
+    background-color: #152645;
+    border: none;
+    color: #f5e6e1;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+}
+.already-about-job {
+    font-size: 18px;
+    color: #152645;
+}
+.refuse-btn {
+    background-color: #753840;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+    margin-top: 20px;
+}
+
+.edit-job-form {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    min-height: 45px;
+    padding: 5px 5px 5px 10px;
+    background-color: #b7ccad;
+}
+
+.edit-job-ready-btn {
+    background-color: #753840;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+    margin-top: 20px;
+}
+
+.myjobs-employee {
+    font-size: 18px;
+    background-color: #e7caa8;
+    color: #7e8c77;
+    padding: 10px;
+}
+.myjobs-table tr th {
+    background-color: #cfd0d4;
+    padding: 10px;
+}
+.myjobs-table tr td {
+    background-color: #f5e6e1;
+    padding: 10px;
+}
+.myjobs-table {
+    margin-bottom: 20px;
+}
+.add-job-btn{
+    margin: 30px 0 10px 0;
+}
+.add-job-btn a {
+    background-color: #3f653e;
+    border: none;
+    color: #f5e6e1;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+}
+.add-job-btn a:hover {
+    text-decoration: none;
+    background-color: #f5e6e1;
+    color: #3f653e;
+}
+
+.add-job-form {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    min-height: 45px;
+    padding: 5px 5px 5px 10px;
+    background-color: #b7ccad;
+}
+.add-job-btn-done {
+    background-color: #e7caa8;
+    border: none;
+    color: #2e4074;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 7px 12px 7px 12px;
+    margin-top: 20px;
+}
+.add-job-title {
+    font-size: 26px;
+    margin: 20px 0 10px 0;
 }

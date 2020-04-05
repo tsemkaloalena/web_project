@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Добавление работы</h1>
+<h2 class="add-job-title">Добавление работы</h2>
 <form action="" method="post">
     {{ form.hidden_tag() }}
     {{ form.csrf_token }}
 
     <p>
         {{ form.description.label }}<br>
-        {{ form.description(class="form-control") }}<br>
+        {{ form.description(class="add-job-form") }}<br>
         {% for error in form.description.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -17,7 +17,7 @@
     </p>
     <p>
         {{ form.address.label }}<br>
-        {{ form.address(class="form-control") }}<br>
+        {{ form.address(class="add-job-form") }}<br>
         {% for error in form.address.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -26,7 +26,7 @@
     </p>
     <p>
         {{ form.salary.label }}<br>
-        {{ form.salary(class="form-control") }}<br>
+        {{ form.salary(class="add-job-form") }}<br>
         {% for error in form.salary.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -35,7 +35,7 @@
     </p>
     <p>
         {{ form.date.label }}<br>
-        {{ form.date(class="form-control") }}<br>
+        {{ form.date(class="add-job-form") }}<br>
         {% for error in form.date.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -44,14 +44,14 @@
     </p>
     <p>
         {{ form.info.label }}<br>
-        {{ form.info(class="form-control") }}<br>
+        {{ form.info(class="add-job-form") }}<br>
         {% for error in form.info.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
             </p>
         {% endfor %}
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit(type="submit", class="add-job-btn-done") }}</p>
     {{message}}
 </form>
 {% endblock %}

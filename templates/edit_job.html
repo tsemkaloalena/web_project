@@ -8,7 +8,7 @@
 
     <p>
         {{ form.description.label }}<br>
-        {{ form.description(class="form-control") }}<br>
+        {{ form.description(class="edit-job-form") }}<br>
         {% for error in form.description.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -17,7 +17,7 @@
     </p>
     <p>
         {{ form.address.label }}<br>
-        {{ form.address(class="form-control") }}<br>
+        {{ form.address(class="edit-job-form") }}<br>
         {% for error in form.address.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -26,7 +26,7 @@
     </p>
     <p>
         {{ form.salary.label }}<br>
-        {{ form.salary(class="form-control") }}<br>
+        {{ form.salary(class="edit-job-form") }}<br>
         {% for error in form.salary.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -35,7 +35,7 @@
     </p>
     <p>
         {{ form.date.label }}<br>
-        {{ form.date(class="form-control") }}<br>
+        {{ form.date(class="edit-job-form") }}<br>
         {% for error in form.date.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -44,7 +44,7 @@
     </p>
     <p>
         {{ form.info.label }}<br>
-        {{ form.info(class="form-control") }}<br>
+        {{ form.info(class="edit-job-form") }}<br>
         {% for error in form.info.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
@@ -52,7 +52,7 @@
         {% endfor %}
     </p>
     <p>{{ form.is_finished() }} {{ form.is_finished.label }}</p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit(type="submit", class="edit-job-ready-btn") }}</p>
     {{message}}
 </form>
 {% endblock %}

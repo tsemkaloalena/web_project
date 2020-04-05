@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<h2 align="center">Все предложения работы</h2>
+<h2 class="about-job-title">Все предложения работы</h2>
 
-<h4>Работа № {{ job.id }}</h4>
+<h4 class="about-job-number">Работа № {{ job.id }}</h4>
 
 <ul>
     <li>Краткое описание работы: {{ job.description }}</li>
@@ -13,8 +13,7 @@
     <li>Когда приходить: {{ job.date }}</li>
     <li>Доп. информация: {{ job.info }}</li>
 </ul>
-<ul>Работодатель
-    <li>{{ employer.surname }} {{ employer.name }}</li>
+<ul><p class="about-job-employer">Работодатель: {{ employer.surname }} {{ employer.name }}</p>
     <li>Email: {{ employer.email }}</li>
     <li>Информация: {{ employer.info }}</li>
 </ul>
@@ -22,13 +21,11 @@
 
 <form action="" method="POST">
     {% if current_user.is_authenticated and current_user.employment == 'Рабочий' and job.employee == 0 %}
-    <p>{{ form.submit_ready(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit_ready(type="submit", class="ready-btn") }}</p>
 
     {% elif current_user.is_authenticated and current_user.id == job.employee %}
-    <div>
-        <p>Вы уже готовы приступить к работе</p>
-    </div>
-    <p>{{ form.submit_refuse(type="submit", class="btn btn-primary") }}</p>
+    <div class="already-about-job">Вы уже готовы приступить к работе</div>
+    <p>{{ form.submit_refuse(type="submit", class="refuse-btn") }}</p>
     {% elif current_user.is_authenticated and current_user.id != job.employee and job.employee != 0 %}
     <div>
         <p>Эту услугу уже кто-то предоствляет</p>
