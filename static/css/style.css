@@ -315,9 +315,10 @@ ul li {
 
 .myjobs-employee {
     font-size: 18px;
-    background-color: #e7caa8;
-    color: #7e8c77;
-    padding: 10px;
+    background-color: #ffddc4;
+    color: #bf7f1f;
+    padding: 10px 15px 5px 15px;
+    margin-bottom: 20px;
 }
 .myjobs-table tr th {
     background-color: #cfd0d4;

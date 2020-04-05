@@ -29,8 +29,8 @@
 
 
 {% if item.employee != 0 %}
-<div>
-    <p class="myjobs-employee">Услугу предоставит: {{ users[item.employee].surname }} {{ users[item.employee].name}}</p>
+<div class="myjobs-employee">
+    <p>Услугу предоставит: {{ users[item.employee].surname }} {{ users[item.employee].name}}</p>
     {% if users[item.employee].info != '' %}
     <p>Доп.информация: {{ users[item.employee].info }}</p>
     {% endif %}
@@ -63,7 +63,7 @@
 </table>
 
 {% if item.employee != 0 %}
-<div>
+<div class="myjobs-employee">
     <p>Услугу предоставил (предоставила, предоставило, предоставили):</p>
     <p>{{ users[item.employee].surname }} {{ users[item.employee].name}}</p>
     {% if users[item.employee].info != '' %}

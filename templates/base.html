@@ -54,7 +54,15 @@
         <div class="login"><a href="/login">Войти</a></div>
         </p>
         {% endif %}
-        <h2 class="title">Поиск быстрой работы</h2>
+        <h2 class="title">
+            <div class="spinner-grow text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            Поиск быстрой работы
+            <div class="spinner-grow text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </h2>
         <p class="username">{{ current_user.surname }} {{ current_user.name }}</p>
     </nav>
 </div>
