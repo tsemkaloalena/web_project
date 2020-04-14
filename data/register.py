@@ -11,6 +11,7 @@ class RegisterForm(FlaskForm):
     name = StringField('Имя', validators=[DataRequired()])
     employment = SelectField('Кем Вы являетесь?', choices=[('Рабочий', 'Рабочий'), ('Работодатель', 'Работодатель')])
     info = TextAreaField('Доп. информация')
+    vk_id = TextAreaField('id аккаунта в vk')
     submit = SubmitField('Готово')
 
 

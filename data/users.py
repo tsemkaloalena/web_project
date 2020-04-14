@@ -17,6 +17,7 @@ class User(SqlAlchemyBase, UserMixin):
     email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     info = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    vk_id = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     job = orm.relation("Jobs", back_populates='user')
 
     def __repr__(self):

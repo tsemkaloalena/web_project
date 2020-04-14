@@ -7,6 +7,7 @@ from data import db_session
 from data.jobs import Jobs
 from data.register import LoginForm, RegisterForm
 from data.users import User
+from data.vk_messages import check_id_exist
 
 
 blueprint = flask.Blueprint('users_api', __name__, template_folder='templates')
@@ -45,6 +46,10 @@ def register():
         user.surname = form.surname.data
         user.employment = form.employment.data
         user.info = form.info.data
+        if check_id_exist(form.vk_id.data):
+            user.vk_id = form.vk_id.data
+        else:
+            user.vk_id = 'None'
         session = db_session.create_session()
         session.add(user)
         session.commit()

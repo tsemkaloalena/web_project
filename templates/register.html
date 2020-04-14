@@ -54,6 +54,16 @@
     </p>
 
     <p>
+        {{ form.vk_id.label }}<br>
+        {{ form.vk_id(class="register-form") }}<br>
+        {% for error in form.vk_id.errors %}
+    <p class="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+
+    <p>
         {{ form.info.label }}<br>
         {{ form.info(class="register-form") }}<br>
         {% for error in form.info.errors %}
