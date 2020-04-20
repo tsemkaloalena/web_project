@@ -1,12 +1,9 @@
-import datetime
-
 import requests
 import sqlalchemy
 from flask_wtf import FlaskForm
 from sqlalchemy import orm
 from wtforms import StringField, TextAreaField, SubmitField, BooleanField, IntegerField, SelectField
 from wtforms.validators import DataRequired, ValidationError
-
 from .db_session import SqlAlchemyBase
 
 

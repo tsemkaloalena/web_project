@@ -1,5 +1,4 @@
 import random
-
 import vk_api
 
 

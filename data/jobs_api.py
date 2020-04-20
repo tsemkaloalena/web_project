@@ -1,12 +1,10 @@
 from datetime import datetime
-
 import flask
 import requests
 from flask import render_template, request
 from flask_login import current_user, login_required
 from flask_restful import abort
 from werkzeug.utils import redirect
-
 from data import db_session
 from data.users import User
 from data.jobs import Jobs, JobsForm, AddressJob, Ready
@@ -80,12 +78,13 @@ def add_job():
             jobs.coords = toponym["Point"]["pos"]
 
         user = session.query(User).filter(User.id == current_user.id).first()
-        
+
         user.job.append(jobs)
         session.merge(user)
         session.commit()
         if current_user.vk_id != 'None':
-            send_message(current_user.vk_id, f'Вы заказали услугу "{jobs.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
+            send_message(current_user.vk_id,
+                         f'Вы заказали услугу "{jobs.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
 
         return redirect('/myjobs')
     return render_template('jobs.html', title='Добавление работы',
@@ -135,7 +134,8 @@ def edit_job(job_id):
                 job.coords = toponym["Point"]["pos"]
 
             if current_user.vk_id != 'None':
-                send_message(current_user.vk_id, f'Вы внесли изменение в описание услуги "{job.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
+                send_message(current_user.vk_id,
+                             f'Вы внесли изменение в описание услуги "{job.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
 
             session.commit()
             return redirect('/myjobs')
@@ -153,7 +153,8 @@ def job_delete(job_id):
         session.delete(job)
         session.commit()
         if current_user.vk_id != 'None':
-            send_message(current_user.vk_id, f'Вы удалили услугу "{job.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
+            send_message(current_user.vk_id,
+                         f'Вы удалили услугу "{job.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
     else:
         abort(404)
     return redirect('/myjobs')

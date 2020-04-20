@@ -1,6 +1,4 @@
 import requests
-from flask import render_template
-
 from data import db_session
 from data.jobs import Jobs
 

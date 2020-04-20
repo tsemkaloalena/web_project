@@ -1,10 +1,8 @@
 import flask
-from flask import Flask, render_template
+from flask import render_template
 from flask_login import login_user, login_required, logout_user
 from werkzeug.utils import redirect
-
 from data import db_session
-from data.jobs import Jobs
 from data.register import LoginForm, RegisterForm
 from data.users import User
 from data.vk_messages import check_id_exist, send_message
