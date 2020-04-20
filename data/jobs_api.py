@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import flask
 import requests
 from flask import render_template, request
@@ -9,6 +11,7 @@ from data import db_session
 from data.users import User
 from data.jobs import Jobs, JobsForm, AddressJob, Ready
 from data.show_map import show, sort_address_jobs, sort_salary_jobs, sort_date_jobs
+from data.vk_messages import send_message
 
 blueprint = flask.Blueprint('jobs_api', __name__, template_folder='templates')
 
@@ -56,7 +59,6 @@ def add_job():
     session = db_session.create_session()
     jobs = Jobs()
     if form.validate_on_submit():
-
         jobs.description = form.description.data
         jobs.employer = current_user
         jobs.address = form.address.data
@@ -77,9 +79,14 @@ def add_job():
                 "featureMember"][0]["GeoObject"]
             jobs.coords = toponym["Point"]["pos"]
 
-        current_user.job.append(jobs)
-        session.merge(current_user)
+        user = session.query(User).filter(User.id == current_user.id).first()
+        
+        user.job.append(jobs)
+        session.merge(user)
         session.commit()
+        if current_user.vk_id != 'None':
+            send_message(current_user.vk_id, f'Вы заказали услугу "{jobs.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
+
         return redirect('/myjobs')
     return render_template('jobs.html', title='Добавление работы',
                            form=form)
@@ -89,9 +96,11 @@ def add_job():
 @login_required
 def edit_job(job_id):
     form = JobsForm()
+    session = db_session.create_session()
+    job = session.query(Jobs).filter(Jobs.id == job_id, Jobs.employer == current_user.id).first()
     if request.method == "GET":
-        session = db_session.create_session()
-        job = session.query(Jobs).filter(Jobs.id == job_id, Jobs.employer == current_user.id).first()
+        # session = db_session.create_session()
+        # job = session.query(Jobs).filter(Jobs.id == job_id, Jobs.employer == current_user.id).first()
         if job:
             form.description.data = job.description
             form.address.data = job.address
@@ -102,8 +111,8 @@ def edit_job(job_id):
         else:
             abort(404)
     if form.validate_on_submit():
-        session = db_session.create_session()
-        job = session.query(Jobs).filter(Jobs.id == job_id, Jobs.employer == current_user.id).first()
+        # session = db_session.create_session()
+        # job = session.query(Jobs).filter(Jobs.id == job_id, Jobs.employer == current_user.id).first()
         if job:
             job.description = form.description.data
             job.address = form.address.data
@@ -125,6 +134,9 @@ def edit_job(job_id):
                     "featureMember"][0]["GeoObject"]
                 job.coords = toponym["Point"]["pos"]
 
+            if current_user.vk_id != 'None':
+                send_message(current_user.vk_id, f'Вы внесли изменение в описание услуги "{job.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
+
             session.commit()
             return redirect('/myjobs')
         else:
@@ -140,6 +152,8 @@ def job_delete(job_id):
     if job:
         session.delete(job)
         session.commit()
+        if current_user.vk_id != 'None':
+            send_message(current_user.vk_id, f'Вы удалили услугу "{job.description}" {datetime.now().strftime("%d.%m.%Y в %H:%M")}')
     else:
         abort(404)
     return redirect('/myjobs')
