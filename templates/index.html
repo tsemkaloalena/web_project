@@ -16,7 +16,6 @@
     </p>
 
     <p>{{ form.submit_address(type="submit", class="index_button") }}</p>
-
     <p>
         {{ form.sorting.label }}<br>
         {{ form.sorting(class="index-form") }}<br>
@@ -27,11 +26,9 @@
     {% endfor %}
     </p>
     <p>{{ form.submit_sort(type="submit", class="index_button") }}</p>
-
     {{message}}
 </form>
 <img class="map" src="/{{ image }}">
-
 
 {% for item in jobs%}
 {% if item.is_finished == False %}
@@ -48,7 +45,6 @@
 {% if current_user.is_authenticated and current_user.id == item.employer %}
 <div class="edit-job-btn"><a href="/addjob/{{ item.id }}">Редактировать</a></div>
 <div class="delete-job-btn"><a href="/job_delete/{{ item.id }}">Удалить</a></div>
-
 {% endif %}
 
 {% if current_user.is_authenticated and current_user.employment == 'Рабочий' %}
@@ -59,6 +55,5 @@
 </div>
 {% endif %}
 {% endfor %}
-
 
 {% endblock %}
